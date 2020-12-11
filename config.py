@@ -1,1 +1,0 @@
-__TOKEN__ = "155961489:AAHmt5R8zyoQnnoD-kKjY5ZB_9SyfPl8NGc"
