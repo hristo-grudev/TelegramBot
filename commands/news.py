@@ -45,4 +45,4 @@ def daily_news(context: CallbackContext):
 		link = post.xpath('./a/@href')[0]
 		elements.append(str(text) + '\n' + str(link))
 	number = choice(range(len(elements)))
-	context.bot.send_message(chat_id='-1001356679470', text=f'{elements[number].text}')
+	context.bot.send_message(chat_id='-1001356679470', text=f'{elements[number]}')
