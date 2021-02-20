@@ -25,6 +25,7 @@ def bd(update, context):
 def daily_job(context: CallbackContext):
 	birthday_sql = '''select name, date, nickname from holidays
 	where strftime('%d.%m', date) = strftime('%d.%m', date('now'))'''
+	print(birthday_sql)
 	birthdays = run_sql(birthday_sql)
 	#context.bot.send_message(chat_id='67310463', text=f"It's work!")
 	for birthday in birthdays:

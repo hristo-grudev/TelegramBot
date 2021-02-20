@@ -1,13 +1,15 @@
 from telegram import (
 	Update,
+	ParseMode,
 )
 from telegram.ext import (
 	CallbackContext,
 	run_async,
 )
+from random import choice
+from .run_sql import run_sql
 
 
-@run_async
 def start(update: Update, context: CallbackContext) -> None:
 
 	"""Inform user about what this bot can do"""
@@ -25,7 +27,7 @@ def start(update: Update, context: CallbackContext) -> None:
 				all_recipes = all_recipes.intersection(args_recipes)
 		recipes = choice(list(all_recipes))
 	else:
-		recipes = randint(1, 6601)
+		recipes = choice(range(1, 6601))
 
 	global last_recipes
 	last_recipes = recipes
@@ -46,7 +48,6 @@ def start(update: Update, context: CallbackContext) -> None:
 	update.message.reply_text(text, parse_mode=ParseMode.HTML)
 
 
-@run_async
 def cook(update: Update, context: CallbackContext) -> None:
 	global last_recipes
 

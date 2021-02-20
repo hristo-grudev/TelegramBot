@@ -17,10 +17,13 @@ def top_headlines():
 	newsapi = NewsApiClient(api_key='3dfa9a8cae284dc5a022f17a754df3aa')
 	country = 'bg'
 	category = 'technology'
-	top_headlines = newsapi.get_top_headlines(category=category, language='en', country=country)
-	top_headlines = json_normalize(top_headlines['articles'])
-	newdf = top_headlines[["title", "url"]]
+	top_headlines1 = newsapi.get_top_headlines(category=category, language='en', country=country)
+	print(top_headlines1)
+	top_headlines2 = json_normalize(top_headlines['articles'])
+	print(top_headlines2)
+	newdf = top_headlines2[["title", "url"]]
 	dic = newdf.set_index('title')['url'].to_dict()
+
 	return dic
 
 
@@ -35,6 +38,6 @@ def daily_news(context: CallbackContext):
 	url = 'https://novini.bg/bylgariya'
 	response = requests.get(url)
 	tree = html.fromstring(response.text)
-	elements = tree.xpath('//h3')
+	elements = tree.xpath('//article[@class="g-grid__item js-content"]//h2')
 	number = choice(range(len(elements)))
 	context.bot.send_message(chat_id='-1001356679470', text=f'{elements[number].text}')

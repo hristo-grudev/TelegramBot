@@ -80,7 +80,7 @@ def main() -> None:
 	dispatcher.add_handler(CommandHandler('coinflip', coinflip, pass_args=True))
 	dispatcher.add_handler(CommandHandler('random', random_number, pass_args=True))
 	target_time = datetime.time(hour=8, minute=0)
-	news_time = datetime.time(hour=6, minute=0)
+	news_time = datetime.time(hour=6, minute=12)
 	job.run_daily(daily_job, target_time, days=range(6))
 	job.run_daily(daily_news, news_time, days=range(6))
 

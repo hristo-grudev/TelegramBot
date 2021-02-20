@@ -1,3 +1,6 @@
+from random import randint, choice
+
+
 def random_number(update, context):
 	"""Flips a coin"""
 	args = context.args
