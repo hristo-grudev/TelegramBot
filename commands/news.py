@@ -38,6 +38,11 @@ def daily_news(context: CallbackContext):
 	url = 'https://novini.bg/bylgariya'
 	response = requests.get(url)
 	tree = html.fromstring(response.text)
-	elements = tree.xpath('//article[@class="g-grid__item js-content"]//h2')
+	posts = tree.xpath('//article[@class="g-grid__item js-content"]')
+	elements = []
+	for post in posts:
+		text = post.xpath('.//h2/text()')[0]
+		link = post.xpath('./a/@href')[0]
+		elements.append(str(text) + '\n' + str(link))
 	number = choice(range(len(elements)))
 	context.bot.send_message(chat_id='-1001356679470', text=f'{elements[number].text}')
