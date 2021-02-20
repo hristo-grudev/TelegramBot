@@ -31,7 +31,7 @@ def news(update, context):
 	data = top_headlines()
 	list_data = list(data.keys())
 	number = choice(range(len(list_data)))
-	update.message.reply_text(f'{list_data[number]} - {data[list_data[number]]}', disable_web_page_preview = True)
+	update.message.reply_text(f'{list_data[number]} - {data[list_data[number]]}', disable_web_page_preview=True)
 
 
 def daily_news(context: CallbackContext):
@@ -45,4 +45,4 @@ def daily_news(context: CallbackContext):
 		link = post.xpath('./a/@href')[0]
 		elements.append(str(text) + '\n' + str(link))
 	number = choice(range(len(elements)))
-	context.bot.send_message(chat_id='-1001356679470', text=f'{elements[number]}')
+	context.bot.send_message(chat_id='-1001356679470', text=f'{elements[number]}', disable_web_page_preview=True)
